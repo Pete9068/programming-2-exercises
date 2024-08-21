@@ -1,1 +1,67 @@
 
+#include <iostream>
+
+using namespace std;
+
+enum triangleType{scalene, isosceles, equilateral,noTriangle} ;  
+
+triangleType triangleShape(int a, int b, int c);
+
+int main() 
+{
+int a,b,c;
+cout<<"Please enter three intergers to see what type of triangle it is:";
+cin>>a>>b>>c;
+
+ triangleType result=triangleShape(a,b,c);
+
+
+switch (result)
+{
+    case noTriangle:
+    cout<<"noTriangle";
+    break;
+    case equilateral:
+    cout<<"This is a equilateral";
+    break;
+    case isosceles:
+    cout<<"This is a isosceles";
+    break;
+    case scalene:
+    cout<<"This is a scalene";
+    break;
+    default:
+    cout<<"Please enter numbers";
+    break;
+
+
+}
+
+
+    return 0;
+}
+
+
+enum triangleType triangleShape(int a, int b, int c)
+{
+    // Check if the sides form a valid triangle
+    if (a + b > c && b + c > a && a + c > b)
+    {
+        // Determine the type of triangle
+        if (a == b && a == c && c == b)
+        {
+            return equilateral;
+        }
+        if (a != b && a != c && b != c)
+        {
+            return scalene;
+        }
+        if ((a == b && a != c) || (a == c && b != c) || (b == c && a != b))
+        {
+            return isosceles;
+        }
+    }
+    // If the sides do not form a valid triangle
+    return noTriangle;
+}
+    
